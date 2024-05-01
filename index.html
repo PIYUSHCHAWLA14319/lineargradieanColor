@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       }
+       body{
+        background-image:linear-gradient(to right top, #051937,#004d7a,#008793,#00bf72,#a8eb12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+       }
+       section{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        /* margin-top: 5%; */
+       }
+       button{
+        padding: 8px 42px;
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        font-size: 20px;
+        border: 2px solid #fff;
+       }
+       h2{
+        margin-top: 2%;
+        color: #fff;
+        text-shadow: 2px 2px 2px #000;
+       }
+       .colorBox{
+        background-color: rgb(173, 166, 166);
+        padding: 2%;
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0px 3px 2px 1px purple;
+        border-top-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        text-align: center;
+     
+       }
+    </style>
+</head>
+<body>
+       <section>
+        <div class="btn">
+            <button id="btn1">#051937</button>
+            <button id="btn2">#008793</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="colorBox">
+            background-image:linear-gradient(to right,rgb(92,145,229),rgb(152,63,198))
+        </div>
+       </section>
+       <script>
+         let btn1= document.getElementById('btn1')
+         let btn2= document.getElementById('btn2')
+         let rgb1='rgb(92,145,229)'
+         let rgb2='rgb(152,63,198)'
+         let colorBox = document.querySelector('.colorBox')
+             
+
+         //Create Hexa Code 
+         const Colorcreate=()=>{
+            let Hexacode ='#'
+            let Colors ='0123456789ABCDEF'
+            for(let i=0; i<6;i++){
+                Hexacode+=Colors[Math.floor(Math.random()*16)]     
+            }
+             return Hexacode;
+         }
+           
+         // My First Btn 
+         let mycolors=()=>{
+            rgb1=  Colorcreate()
+            // console.log(rgb1);
+            btn1.innerText=rgb1;
+            btn1.style.backgroundColor=rgb1
+            document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`;
+            colorBox.innerHTML=`background-image:linear-gradient(to right,${rgb1},${rgb2})
+            ` 
+           
+         }
+        //  My Second Btn
+         let mycolorsSecond=()=>{
+             rgb2=  Colorcreate()
+            // console.log(rgb2);
+            btn2.style.backgroundColor = rgb2
+            btn2.innerText=rgb2
+            document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`;
+            colorBox.innerHTML=`background-image:linear-gradient(to right,${rgb1},${rgb2})
+            `   
+         }
+         btn1.addEventListener('click',mycolors)
+         btn2.addEventListener('click',mycolorsSecond)
+
+         colorBox.addEventListener('click',()=>{
+            navigator.clipboard.writeText(colorBox.innerText);
+            alert("Successfully copied the text")
+         })
+       </script>
+</body>
+</html>
